@@ -1,0 +1,15 @@
+.profile__profile-info {
+
+  grid-area: info;
+  min-width: 336px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 554px){
+  .profile__profile-info {
+    min-width: 282px;
+    justify-content: center;
+  }
+}
