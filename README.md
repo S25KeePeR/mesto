@@ -3,20 +3,37 @@
 
 ## Проектная работа №4
 
+Реализация возможностей добавлять новые места и редактировать свой профиль. Реализация Flex и Grid структуры. Адаптивная верстка. javascript
 
-Реализация Flex и Grid структуры. Адаптивная верстка.
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=28212%3A155)
-* [Ссылка на GitHub Pages](https://github.com/S25KeePeR/russian-travel/tree/master)
-* [Ссылка на страницу](https://s25keeper.github.io/russian-travel/index.html)
+* [Ссылка на макет в Figma](https://www.figma.com/file/5S2WSbEFL6awjVWJ0NWL8Q/Sprint-3_-Russia-_-desktop-mobile?node-id=28503%3A0)
+* [Ссылка на GitHub Pages](https://github.com/S25KeePeR/mesto/tree/main)
+* [Ссылка на страницу](https://s25keeper.github.io/mesto/index.html)
 
-**Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
 
-**Картинки**
+----
+### Обзор блоков
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+* header
+* profile
+* elements
+* footer
 
-Удачи!
+
+
+**header**
+
+Заголовок сайта с логотипом и кнопками для переключения языка страницы. Реализован через Flex.
+
+**profile**
+
+Профиль пользователя с фото, именем и сферой деятельности. В блоке присутствуют кнопки редактирования профиля и добавление новой карточки. Реализован через Grid.
+
+**elements**
+
+Карточки мест. В каждой карточке название и отметка нравится. Реализован через Grid.
+
+**footer**
+
+Простой блок с одной надписью.
