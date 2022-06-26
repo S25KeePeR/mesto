@@ -6,7 +6,7 @@
 Реализация возможностей добавлять новые места и редактировать свой профиль. Реализация Flex и Grid структуры. Адаптивная верстка. javascript
 
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/5S2WSbEFL6awjVWJ0NWL8Q/Sprint-3_-Russia-_-desktop-mobile?node-id=28503%3A0)
+* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=28212%3A155)
 * [Ссылка на GitHub Pages](https://github.com/S25KeePeR/mesto/tree/main)
 * [Ссылка на страницу](https://s25keeper.github.io/mesto/index.html)
 
