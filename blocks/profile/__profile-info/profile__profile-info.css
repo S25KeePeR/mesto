@@ -2,9 +2,11 @@
 
   grid-area: info;
   min-width: 336px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "name edit"
+    "about about";
 }
 
 @media screen and (max-width: 554px){
