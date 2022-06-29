@@ -13,14 +13,6 @@
 @media screen and (max-width: 780px){
   .main {
     margin: 42px 19px 0;
-    min-height: 56px;
   }
 }
-/*
-@media screen and (max-width: 544px){
-  .main {
-    margin: 42px 19px;
-    min-height: 56px;
-  }
-}
-*/
+

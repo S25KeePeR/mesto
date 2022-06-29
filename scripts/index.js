@@ -4,8 +4,8 @@ let popupForm = container.querySelector('.popup');
 let closePopup = container.querySelector('.popup__close-icon');
 let profileName = document.querySelector('.profile__title');
 let profileAbout = document.querySelector('.profile__subtitle');
-let nameForm = popupForm.querySelector('.name');
-let aboutForm = popupForm.querySelector('.about');
+let nameForm = popupForm.querySelector('.popup__input_type_name');
+let aboutForm = popupForm.querySelector('.popup__input_type_about');
 
 function popupFormOpenClose() {
 
@@ -16,12 +16,8 @@ function popupFormOpenClose() {
 
   } else {
 
-
-    let nameForm = popupForm.querySelector('.name');
-    let aboutForm = popupForm.querySelector('.about');
-
-    nameForm.value = profileName.innerText;
-    aboutForm.value = profileAbout.innerText;
+    nameForm.value = profileName.textContent;
+    aboutForm.value = profileAbout.textContent;
 
     popupForm.classList.add('popup_opened');
 

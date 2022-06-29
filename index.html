@@ -19,71 +19,72 @@
         <img class="profile__avatar" src="./images/profile/user_001.png" alt="Аватар пользователя">
         <div class="profile__profile-info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"></button>
+          <button class="profile__edit-button" type="button"></button>
           <p class="profile__subtitle">Исследователь океана</p>
-
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
       <article class="elements">
         <figure class="element">
-          <img class="element__image" src="./images/places/place_001.png" alt="Карачаевск">
+          <img class="element__image" src="./images/places/place_001.png" alt="Фото древнего храма в Карачаевск">
             <figcaption class="element__caption">
               <h2 class="element__title">Карачаевск</h2>
-              <button class="element__like" ></button>
+              <button class="element__like" type="button"></button>
             </figcaption>
          </figure>
          <figure class="element">
-          <img class="element__image" src="./images/places/place_002.png" alt="Гора Эльбрус">
+          <img class="element__image" src="./images/places/place_002.png" alt="Фото Горы Эльбрус">
             <figcaption class="element__caption">
               <h2 class="element__title">Гора Эльбрус</h2>
-              <button class="element__like" ></button>
+              <button class="element__like" type="button"></button>
             </figcaption>
          </figure>
          <figure class="element">
-          <img class="element__image" src="./images/places/place_003.png" alt="Домбай">
+          <img class="element__image" src="./images/places/place_003.png" alt="Фото Горы Домбай">
             <figcaption class="element__caption">
               <h2 class="element__title">Домбай</h2>
-              <button class="element__like" ></button>
+              <button class="element__like" type="button"></button>
             </figcaption>
          </figure>
          <figure class="element">
-          <img class="element__image" src="./images/places/place_002.png" alt="Гора Эльбрус">
+          <img class="element__image" src="./images/places/place_002.png" alt="Фото Горы Эльбрус">
             <figcaption class="element__caption">
               <h2 class="element__title">Гора Эльбрус</h2>
-              <button class="element__like" ></button>
+              <button class="element__like" type="button"></button>
             </figcaption>
          </figure>
          <figure class="element">
-          <img class="element__image" src="./images/places/place_003.png" alt="Домбай">
+          <img class="element__image" src="./images/places/place_003.png" alt="Фото Горы Домбай">
             <figcaption class="element__caption">
               <h2 class="element__title">Домбай</h2>
-              <button class="element__like" ></button>
+              <button class="element__like" type="button"></button>
             </figcaption>
          </figure>
          <figure class="element">
-          <img class="element__image" src="./images/places/place_001.png" alt="Карачаево-Черкесия">
+          <img class="element__image" src="./images/places/place_001.png" alt="Фото древнего храма в Карачаево-Черкесия">
             <figcaption class="element__caption">
               <h2 class="element__title">Карачаево-Черкесия</h2>
-              <button class="element__like" ></button>
+              <button class="element__like" type="button"></button>
             </figcaption>
          </figure>
       </article>
-
     </main>
     <section class="popup">
-      <form class="popup__container">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
         <img class="popup__close-icon" src="./images/form/closeIcon.svg" alt="закрыть форму">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="name popup__input" value="">
-        <input class="about popup__input" value="">
-        <button class="popup__submit-btn">Сохранить</button>
-      </form>
+        <form class="popup__form" name="editProfile">
+          <input class="popup__input popup__input_type_name" name="name" type="text" value="">
+          <input class="popup__input popup__input_type_about" name="about" type="text" value="">
+          <button class="popup__submit-btn" type="submit">Сохранить</button>
+        </form>
+      </div>
     </section>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
-  <script src="index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
