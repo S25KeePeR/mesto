@@ -10,5 +10,6 @@
   flex-direction: column;
   position: fixed;
   overflow: auto;
-  display: none;
+  display: flex;
+
 }

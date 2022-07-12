@@ -25,51 +25,10 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <article class="elements">
-        <figure class="element">
-          <img class="element__image" src="./images/places/place_001.png" alt="Фото древнего храма в Карачаевск">
-            <figcaption class="element__caption">
-              <h2 class="element__title">Карачаевск</h2>
-              <button class="element__like" type="button"></button>
-            </figcaption>
-         </figure>
-         <figure class="element">
-          <img class="element__image" src="./images/places/place_002.png" alt="Фото Горы Эльбрус">
-            <figcaption class="element__caption">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button class="element__like" type="button"></button>
-            </figcaption>
-         </figure>
-         <figure class="element">
-          <img class="element__image" src="./images/places/place_003.png" alt="Фото Горы Домбай">
-            <figcaption class="element__caption">
-              <h2 class="element__title">Домбай</h2>
-              <button class="element__like" type="button"></button>
-            </figcaption>
-         </figure>
-         <figure class="element">
-          <img class="element__image" src="./images/places/place_002.png" alt="Фото Горы Эльбрус">
-            <figcaption class="element__caption">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button class="element__like" type="button"></button>
-            </figcaption>
-         </figure>
-         <figure class="element">
-          <img class="element__image" src="./images/places/place_003.png" alt="Фото Горы Домбай">
-            <figcaption class="element__caption">
-              <h2 class="element__title">Домбай</h2>
-              <button class="element__like" type="button"></button>
-            </figcaption>
-         </figure>
-         <figure class="element">
-          <img class="element__image" src="./images/places/place_001.png" alt="Фото древнего храма в Карачаево-Черкесия">
-            <figcaption class="element__caption">
-              <h2 class="element__title">Карачаево-Черкесия</h2>
-              <button class="element__like" type="button"></button>
-            </figcaption>
-         </figure>
+        <!-- наполнение блока через js -->
       </article>
     </main>
-    <section class="popup">
+    <section class="popup popup_profile popup_closed">
       <div class="popup__container">
         <button class="popup__close-btn" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -80,10 +39,41 @@
         </form>
       </div>
     </section>
+
+    <section class="popup popup_add popup_closed">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="editProfile">
+          <input class="popup__input popup__input_type_place" name="place" type="text" placeholder="Название" value="">
+          <input class="popup__input popup__input_type_link" name="link" type="text" placeholder="Ссылка на картинку" value="">
+          <button class="popup__submit-btn" type="submit">Создать</button>
+        </form>
+      </div>
+    </section>
+    <section class="popup popup_view popup_closed">
+      <figure class="popup__view-container">
+        <img class="popup__view-image" src="" alt="">
+        <button class="popup__close-btn" type="button"></button>
+        <figcaption class="popup__view-caption">
+          <h2 class="popup__view-title"></h2>
+        </figcaption>
+       </figure>
+    </section>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
+  <template id="card">
+    <figure class="element">
+      <img class="element__image" src="" alt="">
+      <button class="element__del-button" type="button"></button>
+        <figcaption class="element__caption">
+          <h2 class="element__title"></h2>
+          <button class="element__like" type="button"></button>
+        </figcaption>
+     </figure>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

@@ -1,7 +1,10 @@
-.element__like {
-  width: 22px;
+.element__del-button {
+  width: 18px;
   height: 19px;
-  background-image: url(../../../images/element/like/like-disabled.svg);
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-image: url(../../../images/element/delete/delete-btn.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -11,8 +14,8 @@
   background-color: transparent;
 }
 
-.element__like:hover {
-  opacity: .5;
+.element__del-button:hover {
+  opacity: .6;
 }
 
 
