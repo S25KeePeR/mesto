@@ -77,11 +77,11 @@ const createCard = (data) => {
     evt.target.closest('.element').remove();
   });
 
-  cardElement.querySelector('.element__image').addEventListener('click', () => {
+  cardElementImage.addEventListener('click', () => {
     popupViewImage.src = data.link;
     popupViewImage.alt = fileName;
     popupViewTitle.textContent = data.name;
-    openClosePopup(popupView);
+    openPopup(popupView);
   });
 
   return cardElement;
