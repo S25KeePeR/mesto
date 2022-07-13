@@ -6,18 +6,20 @@ const cardTemplate = document.querySelector('#card').content;
 // Поля и кнопки блока Profile
 const profileName = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
-const editButton = container.querySelector('.profile__edit-button');
-const addButton = container.querySelector('.profile__add-button');
+const buttonEdit = container.querySelector('.profile__edit-button');
+const buttonAdd = container.querySelector('.profile__add-button');
 
 // popup Profile
 const popupProfile = container.querySelector('.popup_profile');
 const popupProfileCloseBtn = popupProfile.querySelector('.popup__close-btn');
+const popupProfileForm = popupProfile.querySelector('.popup__form');
 const popupInputName = popupProfile.querySelector('.popup__input_type_name');
 const popupInputAbout = popupProfile.querySelector('.popup__input_type_about');
 
 // popup Add
 const popupAdd = container.querySelector('.popup_add');
 const popupAddСloseBtn = popupAdd.querySelector('.popup__close-btn');
+const popupAddForm = popupAdd.querySelector('.popup__form');
 const popupInputPlace = popupAdd.querySelector('.popup__input_type_place');
 const popupInputLink = popupAdd.querySelector('.popup__input_type_link');
 
@@ -61,9 +63,10 @@ const createCard = (data) => {
 
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
   const fileName = data.link.slice(data.link.lastIndexOf('/') + 1);
+  const cardElementImage = cardElement.querySelector('.element__image');
 
-  cardElement.querySelector('.element__image').src = data.link;
-  cardElement.querySelector('.element__image').alt = fileName;
+  cardElementImage.src = data.link;
+  cardElementImage.alt = fileName;
   cardElement.querySelector('.element__title').textContent = data.name;
 
   cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
@@ -78,7 +81,7 @@ const createCard = (data) => {
     popupViewImage.src = data.link;
     popupViewImage.alt = fileName;
     popupViewTitle.textContent = data.name;
-    popupOpenClose(popupView);
+    openClosePopup(popupView);
   });
 
   return cardElement;
@@ -95,22 +98,25 @@ const renderCard = (data) => {
 initialCards.forEach(renderCard);
 
 
-// Функция открытия и закрытия popup
-const popupOpenClose = function (typePopup) {
-  typePopup.classList.toggle('popup_opened');
-  typePopup.classList.toggle('popup_closed');
+// Функция открытия popup
+const openPopup = (typePopup) => {
+  typePopup.classList.add('popup_opened');
+}
+// Функция закрытия popup
+const closePopup = (typePopup) => {
+  typePopup.classList.remove('popup_opened');
 }
 
-// Событие по кнопке editButton
-editButton.addEventListener('click', () => {
-  popupOpenClose(popupProfile);
+// Событие по кнопке buttonEdit
+buttonEdit.addEventListener('click', () => {
+  openPopup(popupProfile);
   popupInputName.value = profileName.textContent;
   popupInputAbout.value = profileAbout.textContent;
 });
 
-// Событие по кнопке addButton
-addButton.addEventListener('click', () => {
-  popupOpenClose(popupAdd);
+// Событие по кнопке buttonAdd
+buttonAdd.addEventListener('click', () => {
+  openPopup(popupAdd);
   popupInputPlace.value = '';
   popupInputLink.value ='';
 });
@@ -118,51 +124,34 @@ addButton.addEventListener('click', () => {
 
 // Кнопки закрытия popup
 popupProfileCloseBtn.addEventListener('click', () => {
-  popupOpenClose(popupProfile);
+  closePopup(popupProfile);
 });
 popupAddСloseBtn.addEventListener('click', () => {
-  popupOpenClose(popupAdd);
+  closePopup(popupAdd);
 });
 popupViewСloseBtn.addEventListener('click', () => {
-  popupOpenClose(popupView);
+  closePopup(popupView);
 });
 
 
 // Обработка submit в popupProfile
-popupProfile.addEventListener('submit', function (evt) {
+popupProfileForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
 
     profileName.textContent = popupInputName.value;
     profileAbout.textContent = popupInputAbout.value;
 
-    popupOpenClose(popupProfile);
+    closePopup(popupProfile);
 });
 
 
 // Обработка submit в popupAdd
-popupAdd.addEventListener('submit', function (evt) {
+popupAddForm.addEventListener('submit', function (evt) {
   evt.preventDefault();
 
-  if ( popupInputPlace.value == '' ) {
-
-    alert ( `Пожалуйста заполните поле '${popupInputPlace.placeholder}'` );
-
-  } else if (popupInputLink.value == '') {
-
-    alert ( `Пожалуйста заполните поле '${popupInputLink.placeholder}'` );
-
-  } else {
-    if (popupInputLink.value.startsWith('http://') || popupInputLink.value.startsWith('https://')) {
-
-      const data = {name: popupInputPlace.value, link: popupInputLink.value};
-      renderCard(data);
-      popupOpenClose(popupAdd);
-
-    } else {
-      alert ( `В поле '${popupInputLink.placeholder}' введена не ссылка` );
-    }
-  };
-
+  const data = {name: popupInputPlace.value, link: popupInputLink.value};
+  renderCard(data);
+  closePopup(popupAdd);
 
 });
 
