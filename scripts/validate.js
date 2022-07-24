@@ -1,26 +1,16 @@
-const obj = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-btn',
-  inactiveButtonClass: 'popup__submit-btn_disabled',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__error_visible'
-};
-
-
 function enableValidation(config) {
 
-  const formsList = Array.from(document.querySelectorAll(config.formSelector));
+  const formsList = document.querySelectorAll(config.formSelector);
   formsList.forEach((formElement) => {
 
-    formElement.addEventListener('submit', (evt) => setFormHandler(evt, config) );
+    formElement.addEventListener('submit', (evt) => FormHandler(evt, config) );
     enableFieldHandler(formElement, config);
 
   });
 }
 
 
-function setFormHandler(evt, config) {
+function FormHandler(evt, config) {
   evt.preventDefault();
   const form = evt.target;
   const button = form.querySelector(config.submitButtonSelector);
@@ -35,16 +25,16 @@ function setFormHandler(evt, config) {
 
 function enableFieldHandler(form, config) {
 
-  const inputsList = Array.from(form.querySelectorAll(config.inputSelector));
+  const inputsList = form.querySelectorAll(config.inputSelector);
   inputsList.forEach(input => {
 
-    input.addEventListener('input', (evt) => setInputHendler(evt, form, config));
+    input.addEventListener('input', (evt) => InputHendler(evt, form, config));
 
   });
 }
 
 
-function setInputHendler(evt, form, config){
+function InputHendler(evt, form, config){
 
   const input = evt.target;
   searchErrorPlace(input);
@@ -56,9 +46,8 @@ function setInputHendler(evt, form, config){
 
 function searchErrorPlace(input) {
 
-  const inputName = input.getAttribute('name');
-  const errorPlace = document.getElementById(`${inputName}-error`);
-  return errorPlace;
+  const inputId = input.getAttribute('id');
+  return errorPlace = document.getElementById(`${inputId}-error`);
 
 }
 
@@ -108,22 +97,3 @@ function  setSubmitButtonState(form, config) {
 
   }
 }
-
-
-function cleanPopup(typePopup) {
-
-  if (typePopup.querySelector(obj.formSelector) !== null) {
-
-    const form = typePopup.querySelector(obj.formSelector);
-    const inputsList = Array.from(form.querySelectorAll(obj.inputSelector));
-    inputsList.forEach(input => {
-
-      searchErrorPlace(input);
-      hideInputError(input, errorPlace, obj);
-
-    });
-  }
-}
-
-
-enableValidation(obj);
