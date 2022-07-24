@@ -5,7 +5,7 @@ const obj = {
   inactiveButtonClass: 'popup__submit-btn_disabled',
   inputErrorClass: 'popup__input_error',
   errorClass: 'popup__error_visible'
-}
+};
 
 
 function enableValidation(config) {
@@ -57,7 +57,8 @@ function setInputHendler(evt, form, config){
 function searchErrorPlace(input) {
 
   const inputName = input.getAttribute('name');
-  return errorPlace = document.getElementById(`${inputName}-error`);
+  const errorPlace = document.getElementById(`${inputName}-error`);
+  return errorPlace;
 
 }
 
@@ -72,7 +73,7 @@ function showFieldError(input, errorPlace, config) {
 
     hideInputError(input, errorPlace, config);
 
-  };
+  }
 }
 
 
@@ -105,7 +106,7 @@ function  setSubmitButtonState(form, config) {
 
     button.classList.add(config.inactiveButtonClass);
 
-  };
+  }
 }
 
 
@@ -121,7 +122,7 @@ function cleanPopup(typePopup) {
       hideInputError(input, errorPlace, obj);
 
     });
-  };
+  }
 }
 
 
