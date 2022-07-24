@@ -1,7 +1,8 @@
-// Контейнеры
+// общие
 const container = document.querySelector('.page__container');
 const cardsContainer = container.querySelector('.elements');
 const cardTemplate = document.querySelector('#card').content;
+
 
 // Поля и кнопки блока Profile
 const profileName = document.querySelector('.profile__title');
@@ -28,6 +29,8 @@ const popupView = container.querySelector('.popup_view');
 const popupViewСloseBtn = popupView.querySelector('.popup__close-btn');
 const popupViewImage = popupView.querySelector('.popup__view-image');
 const popupViewTitle = popupView.querySelector('.popup__view-title');
+
+// popup Общие
 
 
 // Добавление карточек на страницу при загрузке
@@ -97,16 +100,28 @@ const renderCard = (data) => {
 
 initialCards.forEach(renderCard);
 
+const closePopupPressKey = (evt) => {
+  const popupOpen = container.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(popupOpen);
+  }
+};
 
 // Функция открытия popup
 const openPopup = (typePopup) => {
   typePopup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupPressKey);
+  cleanPopup(typePopup);
 }
+
 // Функция закрытия popup
 const closePopup = (typePopup) => {
   typePopup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupPressKey);
+
 }
 
+// start
 // Событие по кнопке buttonEdit
 buttonEdit.addEventListener('click', () => {
   openPopup(popupProfile);
@@ -121,7 +136,7 @@ buttonAdd.addEventListener('click', () => {
   popupInputLink.value ='';
 });
 
-
+// close
 // Кнопки закрытия popup
 popupProfileCloseBtn.addEventListener('click', () => {
   closePopup(popupProfile);
@@ -134,6 +149,20 @@ popupViewСloseBtn.addEventListener('click', () => {
 });
 
 
+const popupList = Array.from(document.querySelectorAll('.popup'));
+popupList.forEach((popupElement) => {
+  popupElement.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup')) {
+      popupElement.classList.remove('popup_opened');
+    };
+  });
+});
+
+
+
+
+
+// submit
 // Обработка submit в popupProfile
 popupProfileForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
