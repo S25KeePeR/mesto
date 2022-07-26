@@ -2,6 +2,8 @@
 const container = document.querySelector('.page__container');
 const cardsContainer = container.querySelector('.elements');
 const cardTemplate = document.querySelector('#card').content;
+const keyEscape = 'Escape';
+const popupActive = document.querySelector('.popup_opened');
 
 // Поля и кнопки блока Profile
 const profileName = document.querySelector('.profile__title');
@@ -27,7 +29,14 @@ const popupViewImage = popupView.querySelector('.popup__view-image');
 const popupViewTitle = popupView.querySelector('.popup__view-title');
 
 // popup Общие
-
+const validationSettings  = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-btn',
+  inactiveButtonClass: 'popup__submit-btn_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__error_visible'
+};
 
 // Добавление карточек на страницу при загрузке
 // массив карточек
@@ -59,14 +68,14 @@ const initialCards = [
 ];
 
 
-const createCard = (data) => {
+const createCard = (name, link) => {
 
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
   const cardElementImage = cardElement.querySelector('.element__image');
 
-  cardElementImage.src = data.link;
-  cardElementImage.alt = data.name;
-  cardElement.querySelector('.element__title').textContent = data.name;
+  cardElementImage.src = link;
+  cardElementImage.alt = name;
+  cardElement.querySelector('.element__title').textContent = name;
 
   cardElement.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
@@ -78,9 +87,9 @@ const createCard = (data) => {
 
   cardElementImage.addEventListener('click', () => {
 
-    popupViewImage.src = data.link;
-    popupViewImage.alt = data.name;
-    popupViewTitle.textContent = data.name;
+    popupViewImage.src = link;
+    popupViewImage.alt = name;
+    popupViewTitle.textContent = name;
     openPopup(popupView);
 
   });
@@ -92,7 +101,7 @@ const createCard = (data) => {
 
 const renderCard = (data) => {
 
-  const cardElement = createCard(data);   // Создаем карточку на основе данных
+  const cardElement = createCard(data.name, data.link);   // Создаем карточку на основе данных
   cardsContainer.prepend(cardElement);  // Помещаем ее в контейнер карточек
 
 }
@@ -107,10 +116,7 @@ const openPopup = (popup) => {
   cleanPopup(popup);
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupOnPressKey);
-  popup.addEventListener('click', (evt) => closePopupOnClickOverlay(evt, popup));
-
-  getCurrentCloseButton(popup);
-  popupCloseBtn.addEventListener('click', () => closePopup(popup));
+  popup.addEventListener('click', closePopupOnClickOverlay);
 
 }
 
@@ -120,17 +126,14 @@ const closePopup = (popup) => {
 
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupOnPressKey);
-  popup.removeEventListener('click', (evt) => closePopupOnClickOverlay(evt, popup));
-
-  getCurrentCloseButton(popup);
-  popupCloseBtn.removeEventListener('click', () => closePopup(popup));
+  popup.removeEventListener('click', closePopupOnClickOverlay);
 
 }
 
 
 const closePopupOnPressKey = (evt) => {
 
-  if (evt.key === 'Escape') {
+  if (evt.key === keyEscape) {
 
     const popupOpen = container.querySelector('.popup_opened');
     closePopup(popupOpen);
@@ -139,17 +142,15 @@ const closePopupOnPressKey = (evt) => {
 }
 
 
-function closePopupOnClickOverlay(evt, popup) {
+const closePopupOnClickOverlay = (evt) => {
 
-  if (evt.target.classList.contains('popup')) {
-    closePopup(popup);
-  };
+  const targetOverlay = evt.target.classList.contains('popup');
+  const targetBtnClose = evt.target.classList.contains('popup__close-btn');
+  if (targetOverlay || targetBtnClose) {
 
-}
+    closePopup(evt.currentTarget);
 
-
-function getCurrentCloseButton(popup) {
-  return popupCloseBtn = popup.querySelector('.popup__close-btn');
+  }
 }
 
 
@@ -195,30 +196,24 @@ popupAddForm.addEventListener('submit', function (evt) {
 
 });
 
-const objectSettings  = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-btn',
-  inactiveButtonClass: 'popup__submit-btn_disabled',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__error_visible'
-};
-
 
 function cleanPopup(popup) {
 
-  if (popup.querySelector(objectSettings.formSelector) !== null) {
+  if (popup.querySelector(validationSettings.formSelector) !== null) {
 
-    const form = popup.querySelector(objectSettings.formSelector);
-    const inputsList = Array.from(form.querySelectorAll(objectSettings.inputSelector));
+    const form = popup.querySelector(validationSettings.formSelector);
+    const inputsList = form.querySelectorAll(validationSettings.inputSelector);
     inputsList.forEach(input => {
 
       searchErrorPlace(input);
-      hideInputError(input, errorPlace, objectSettings);
+      hideInputError(input, errorPlace, validationSettings);
 
     });
+    const button = form.querySelector(validationSettings.submitButtonSelector);
+    button.classList.add(validationSettings.inactiveButtonClass);
+
   }
 }
 
 
-enableValidation(objectSettings);
+enableValidation(validationSettings);

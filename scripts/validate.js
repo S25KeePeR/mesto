@@ -3,23 +3,10 @@ function enableValidation(config) {
   const formsList = document.querySelectorAll(config.formSelector);
   formsList.forEach((formElement) => {
 
-    formElement.addEventListener('submit', (evt) => FormHandler(evt, config) );
+    formElement.addEventListener('submit', evt => evt.preventDefault() );
     enableFieldHandler(formElement, config);
 
   });
-}
-
-
-function FormHandler(evt, config) {
-  evt.preventDefault();
-  const form = evt.target;
-  const button = form.querySelector(config.submitButtonSelector);
-
-  if (form.checkValidity()) {
-
-    button.classList.toggle(config.inactiveButtonClass);
-
-  }
 }
 
 
@@ -28,13 +15,13 @@ function enableFieldHandler(form, config) {
   const inputsList = form.querySelectorAll(config.inputSelector);
   inputsList.forEach(input => {
 
-    input.addEventListener('input', (evt) => InputHendler(evt, form, config));
+    input.addEventListener('input', (evt) => enableInputHandler(evt, form, config));
 
   });
 }
 
 
-function InputHendler(evt, form, config){
+function enableInputHandler(evt, form, config){
 
   const input = evt.target;
   searchErrorPlace(input);
