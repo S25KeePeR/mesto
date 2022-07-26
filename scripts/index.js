@@ -68,7 +68,7 @@ const initialCards = [
 ];
 
 
-const createCard = (name, link) => {
+const createCard = ({name, link}) => {
 
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
   const cardElementImage = cardElement.querySelector('.element__image');
@@ -101,7 +101,7 @@ const createCard = (name, link) => {
 
 const renderCard = (data) => {
 
-  const cardElement = createCard(data.name, data.link);   // Создаем карточку на основе данных
+  const cardElement = createCard(data);   // Создаем карточку на основе данных
   cardsContainer.prepend(cardElement);  // Помещаем ее в контейнер карточек
 
 }
